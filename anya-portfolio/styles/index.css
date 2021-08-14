@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Neucha&family=Old+Standard+TT&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap');
+
+.cards-wrapper::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to bottom, rgb(243, 244, 246), transparent);
+    z-index: 1000;
+}
+
+.cards-wrapper::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to top, rgb(243, 244, 246), transparent);
+    z-index: 1000;
+}
+
+.phrase{
+    font-family: 'Neucha', cursive;
+    /* font-family: 'Old Standard TT', serif; */
+    font-size: 35px;
+    margin-top: 30px;
+}
+
+.card-text{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 32px;
+    line-height: 40px;
+}
+
+/* .adv-wrapper:after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to top, white, transparent);
+    z-index: 1000;
+} */
