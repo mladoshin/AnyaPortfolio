@@ -15,7 +15,7 @@ function FirstPost() {
                 <div className="mx-auto relative w-300px h-400px">
                     <Image src="/images/profile.jpg" layout="fill" />
                 </div>
-                <button class="rounded-md mx-auto w-20 bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 mt-10 py-1">
+                <button className="rounded-md mx-auto w-20 bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 mt-10 py-1">
                     Sign up
                 </button>
             </div>
