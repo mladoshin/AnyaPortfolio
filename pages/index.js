@@ -33,12 +33,11 @@ export default function Home(props) {
     t("Помощь с домашними заданиями ученикам начальных классов")
   ]
 
-  console.log(props.locale)
+  console.log(props.lang)
 
   function t(text){
-    const lang = props?.locale?.split("-")[0]
     
-    if(lang==="en"){
+    if(props.lang==="en"){
       return translations[text]
     }
     return text
@@ -53,7 +52,7 @@ export default function Home(props) {
       <div className="grid grid-cols-3 w-full">
         <div className="bg-red-500 w-full h-3 col-span-3" />
         <div className="col-span-3 sticky top-0 nav-wrapper">
-          <Navbar locale={props.locale} setLocale={props.setLocale} t={t}/>
+          <Navbar lang={props.lang} setLang={props.setLang} t={t}/>
         </div>
         <div className="col-span-3 bg-gray-100 border-b-2 border-gray-200">
           <Bio t={t}/>

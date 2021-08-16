@@ -10,7 +10,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Navbar({ locale, setLocale, t }) {
+export default function Navbar({ lang, setLang, t }) {
 
   const navigation = [
     { name: t('Обо мне'), href: '#', current: true },
@@ -65,7 +65,7 @@ export default function Navbar({ locale, setLocale, t }) {
                   </div>
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                  <Switch locale={locale} setLocale={setLocale}/>
+                  <Switch lang={lang} setLang={setLang}/>
                   <button className="bg-gray-100 p-1 rounded-full text-gray-400 ring-gray-400 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                     <span className="sr-only">{t("Посмотреть уведомления")}</span>
                     <BellIcon className="h-7 w-7" aria-hidden="true" />
