@@ -6,33 +6,33 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap');
 
 .cards-wrapper::before{
-    content: '';
+    /* content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100px;
     background: linear-gradient(180deg, rgb(243, 244, 246), transparent);
-    background: -moz-linear-gradient(to bottom, rgb(243, 244, 246), transparent); /* FF 3.6+ */  
-    background: -ms-linear-gradient(to bottom, rgb(243, 244, 246), transparent); /* IE10 */  
-    background: -webkit-linear-gradient(180deg, rgb(243, 244, 246), transparent); /* Safari 5.1+, Chrome 10+ */  
-    background: -o-linear-gradient(to bottom, rgb(243, 244, 246), transparent); /* Opera 11.10 */
-    z-index: 500;
+    background: -moz-linear-gradient(to bottom, rgb(243, 244, 246), transparent);
+    background: -ms-linear-gradient(to bottom, rgb(243, 244, 246), transparent);
+    background: -webkit-linear-gradient(180deg, rgb(243, 244, 246), transparent);
+    background: -o-linear-gradient(to bottom, rgb(243, 244, 246), transparent);
+    z-index: 500; */
 }
 
 .cards-wrapper::after{
-    content: '';
+    /* content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 100px;
     background: linear-gradient(90deg, rgb(243, 244, 246), transparent);
-    background: -moz-linear-gradient(to top, rgb(243, 244, 246), transparent); /* FF 3.6+ */  
-    background: -ms-linear-gradient(to top, rgb(243, 244, 246), transparent); /* IE10 */  
-    background: -webkit-linear-gradient(90deg, rgb(243, 244, 246), transparent); /* Safari 5.1+, Chrome 10+ */  
-    background: -o-linear-gradient(to top, rgb(243, 244, 246), transparent); /* Opera 11.10 */
-    z-index: 500;
+    background: -moz-linear-gradient(to top, rgb(243, 244, 246), transparent); 
+    background: -ms-linear-gradient(to top, rgb(243, 244, 246), transparent); 
+    background: -webkit-linear-gradient(90deg, rgb(243, 244, 246), transparent); 
+    background: -o-linear-gradient(to top, rgb(243, 244, 246), transparent); 
+    z-index: 500; */
 }
 
 .phrase{
