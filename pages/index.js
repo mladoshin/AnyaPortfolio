@@ -7,12 +7,12 @@ import Card from '../components/card'
 
 function Bio() {
   return (
-    <div className="grid w-full grid-cols-5 max-w-7xl mx-auto items-center">
-      <div className="col-span-3">
-        <h1 className="text-7xl font-bold">Anna Nazolina</h1>
-        <p className="phrase">Даже самая длинная дорога <br />начинается с одного первого шага</p>
+    <div className="grid w-full grid-cols-5 max-w-7xl mx-auto items-center lg:pl-10 lg:pt-10 lg:pb-10">
+      <div className="lg:col-span-3 sm:col-span-5 sm:order-2 sm:px-8 sm:pb-8">
+        <h1 className="text-7xl font-bold md:text-center lg:text-6xl">Anna Nazolina</h1>
+        <p className="phrase md:mx-auto md:w-8/12 lg:w-9/12">Даже самая длинная дорога начинается с одного первого шага</p>
       </div>
-      <div className="col-span-2">
+      <div className="lg:col-span-2 sm:order-1 sm:col-span-5">
         <div className="relative w-300px h-300px mx-auto rounded-3xl overflow-hidden ring-4 ring-red-500 ring-offset-4 my-8 shadow-xl">
           <Image src="/images/profile.jpg" layout="fill" objectFit="cover" />
         </div>
@@ -39,8 +39,8 @@ export default function Home() {
       </Head>
 
       <div className="grid grid-cols-3 w-full">
-        <div className="col-span-3">
-          <div className="bg-red-500 w-full h-3" />
+        <div className="bg-red-500 w-full h-3 col-span-3" />
+        <div className="col-span-3 sticky top-0 nav-wrapper">
           <Navbar />
         </div>
         <div className="col-span-3 bg-gray-100 border-b-2 border-gray-200">
@@ -50,16 +50,16 @@ export default function Home() {
           <div className="w-full h-full absolute top-0 z-0">
             <Image src="/images/bg.jpg" layout="fill" objectFit="cover" className="opacity-20" />
           </div>
-          <div className="grid grid-cols-3 max-w-7xl mx-auto gap-20 z-10 relative">
+          <div className="grid max-w-7xl mx-auto xl:gap-12 md:gap-10 sm:gap-10 z-10 relative sm:grid-cols-1 sm:px-8 xl:grid-cols-2 2xl:grid-cols-3">
             {gigs.map((gig, index) => {
               return <Card text={gig} key={index} />
             })}
           </div>
         </div>
 
-        <div className="col-span-3 py-20 bg-gray-100 border-t-2 border-gray-200 relative adv-wrapper">
+        <div className="col-span-3 py-20 bg-gray-100 border-t-2 border-gray-200 relative adv-wrapper sm:px-4 sm:py-12">
           <div className="max-w-7xl mx-auto">
-            <h1 className="font-bold text-4xl text-gray-800 font-sans">Мои преимущества</h1>
+            <h1 className="font-bold text-4xl text-gray-800 font-sans sm:text-3xl sm:text-center md:text-4xl">Мои преимущества</h1>
 
             <div className="flex flex-col w-full">
               <div className="flex flex-row flex-1 w-full py-10 items-center">
@@ -82,10 +82,10 @@ export default function Home() {
 
       </div>
       <div className="bg-red-500 w-full h-1" />
-      <footer className="relative w-full bg-white h-16">
+      <footer className="relative w-full bg-white h-16 sm:px-4">
 
-            <div className="flex flex-row max-w-7xl mx-auto py-5">
-              <div className="w-40">
+            <div className="flex flex-row max-w-7xl mx-auto py-5 sm:flex-col sm:items-center lg:flex-row">
+              <div className="w-40 sm:text-center">
                 <h1>Контакты и адрес</h1>
               </div>
               <div className="flex-1 text-center">

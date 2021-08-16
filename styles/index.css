@@ -13,7 +13,7 @@
     width: 100%;
     height: 100px;
     background: linear-gradient(to bottom, rgb(243, 244, 246), transparent);
-    z-index: 1000;
+    z-index: 500;
 }
 
 .cards-wrapper::after{
@@ -24,7 +24,7 @@
     width: 100%;
     height: 100px;
     background: linear-gradient(to top, rgb(243, 244, 246), transparent);
-    z-index: 1000;
+    z-index: 500;
 }
 
 .phrase{
@@ -50,3 +50,29 @@
     background: linear-gradient(to top, white, transparent);
     z-index: 1000;
 } */
+
+body::-webkit-scrollbar{
+    width: 0.5rem;
+}
+
+body::-webkit-scrollbar-track{
+    background: white;;
+}
+
+body::-webkit-scrollbar-thumb{
+    background: rgb(32, 32, 32);
+}
+
+.nav-wrapper{
+    z-index: 1000;
+}
+
+.card{
+    transition: transform 300ms ease;
+    cursor: pointer;
+}
+
+.card:hover{
+    transform: translateY(-0.5rem) scale(1.02);
+    transition: transform 300ms ease;
+}
