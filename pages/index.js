@@ -36,7 +36,9 @@ export default function Home(props) {
   console.log(props.locale)
 
   function t(text){
-    if(props.locale==="en-US"){
+    const lang = props.locale.split("-")[0]
+    
+    if(lang==="en"){
       return translations[text]
     }
     return text
