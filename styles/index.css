@@ -84,3 +84,34 @@ body::-webkit-scrollbar-thumb{
     transform: translateY(-0.5rem) scale(1.02);
     transition: transform 300ms ease;
 }
+
+.toggle-checkbox:checked {
+    @apply: right-0 border-green-400;
+    right: 0;
+    border-color: #68D391;
+  }
+  .toggle-checkbox:checked + .toggle-label {
+    @apply: bg-green-400;
+    background-color: #68D391;
+  }
+
+  .mobileMenu-opened{
+    position: absolute;
+    animation: slide 300ms ease forwards;
+  }
+
+
+  @keyframes slide {
+      from{
+        opacity: 0;
+        height: 0;
+        /* transform: translateY(-100px) */
+      }
+      to{
+        opacity: 1;
+        height: auto;
+        /* transform: translateY(0) */
+      }
+  }
+
+
