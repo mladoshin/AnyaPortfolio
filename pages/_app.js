@@ -3,7 +3,11 @@ import React, {useState, useEffect} from "react"
 
 function useLocale(){
   const initValue = typeof window !== "undefined" ? localStorage.getItem("locale") ? localStorage.getItem("locale") : window.navigator.language : null
-  alert(initValue)
+  
+  if (typeof window !== "undefined"){
+    alert(initValue)
+  }
+  
   const [locale, setLocale] = useState(initValue)
 
   useEffect(()=>{
