@@ -1,6 +1,12 @@
+import {useEffect, useRef} from "react"
 function Switch({ lang, setLang }) {
-    console.log(lang)
+    const btnRef = useRef()
     const title = lang==="en" ? "Rus" : "En"
+
+    useEffect(()=>{
+        btnRef.current.style.color = lang === "en" ? "blue" : "red"
+    }, [lang])
+
     const toggleLocale=()=>{
         setLang(curLang => {
             if(curLang==="en") return "ru"
@@ -8,9 +14,8 @@ function Switch({ lang, setLang }) {
         })
     }
 
-    const colorStyle = {color: lang==="ru" ? "red" : "blue"}
     return (
-        <button className="text-xs bg-white text-gray-700 w-8 h-8 rounded-full font-mono font-semibold" style={colorStyle}onClick={toggleLocale}>{title}</button>
+        <button ref={btnRef} className="text-xs bg-white text-gray-700 w-8 h-8 rounded-full font-mono font-semibold" onClick={toggleLocale}>{title}</button>
     )
 }
 
