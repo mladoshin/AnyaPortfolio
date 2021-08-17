@@ -4,7 +4,7 @@ export default {
     "Преимущество №2": "Advantage #2",
     "Преимущество №3": "Advantage #3",
     'Анна Назолина': "Anna Nazolina",
-    'Даже самая длинная дорога начинается с одного первого шага': "Even the longest road starts from the single first step",
+    '"Даже самая длинная дорога начинается с одного первого шага"': '"Even the longest road starts from the single first step"',
     'Контакты и адрес': "Contacts and address",
     'Обо мне': "About me",
     'Услуги': "Services",
@@ -17,6 +17,8 @@ export default {
     "Выйти": "Sign Out",
     "Репетитор по Английскому для начинающих": "English for beginners",
     "Репетитор по Русскому языку": "Tutor for Russian language",
-    "Помощь с домашними заданиями ученикам начальных классов": "Helping with homework for primary school students"
+    "Помощь с домашними заданиями ученикам начальных классов": "Helping with homework for primary school students",
+    "Репетитор по английскому/русскому языку для учеников начальных классов; подготовка к школе и помощь с домашними заданиями": "Tutor in English and Russian for primary school students. Preparation for school and help with homework.",
+    "Подготовка к школе": "Preparation for school"
 
 }

@@ -4,6 +4,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Neucha&family=Old+Standard+TT&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
 
 .cards-wrapper::before{
     /* content: '';
@@ -35,11 +37,25 @@
     z-index: 500; */
 }
 
-.phrase{
-    font-family: 'Neucha', cursive;
-    /* font-family: 'Old Standard TT', serif; */
+.phrase-en{
+    
     font-size: 35px;
-    margin-top: 30px;
+    /* margin-top: 30px; */
+
+    font-family: 'Kalam', cursive;
+}
+
+.nameText{
+    background: -webkit-linear-gradient(45deg, rgb(239, 68, 68), orange);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.phrase-ru{
+    font-size: 45px;
+    /* margin-top: 30px; */
+    
+    font-family: 'Caveat', cursive;
 }
 
 .card-text{
@@ -81,8 +97,8 @@ body::-webkit-scrollbar-thumb{
 }
 
 .card:hover{
-    transform: translateY(-0.5rem) scale(1.02);
-    transition: transform 300ms ease;
+    /* transform: translateY(-0.5rem) scale(1.02);
+    transition: transform 300ms ease; */
 }
 
 .toggle-checkbox:checked {
@@ -113,5 +129,28 @@ body::-webkit-scrollbar-thumb{
         /* transform: translateY(0) */
       }
   }
+
+.aboutMe{
+    
+    font-family: 'Neucha', cursive;
+    /* font-family: 'Old Standard TT', serif; */
+    font-size: 35px;
+    margin-top: 30px;
+}
+
+.btnCard{
+    background: -webkit-linear-gradient(90deg, rgb(239, 68, 68), orange);
+}
+
+.bg-en{
+    filter: grayscale(100%) opacity(0.05);
+}
+
+.textAbout{
+    font-family: 'Neucha', cursive;
+    /* font-family: 'Old Standard TT', serif; */
+    font-size: 35px;
+    margin-top: 30px;
+}
 
 
