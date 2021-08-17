@@ -10,20 +10,39 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Navbar({ lang, setLang, t }) {
+export default function Navbar({ lang, setLang, t, currentSection, setCurrentSection }) {
 
   const navigation = [
-    { name: t('Обо мне'), href: '#', current: true },
-    { name: t('Услуги'), href: '#', current: false },
+    { name: t('Обо мне'), href: 'aboutMe-section', current: currentSection === "about" },
+    { name: t('Услуги'), href: 'services-section', current: currentSection === "services" },
     { name: t('Методика'), href: '#', current: false },
-    { name: t('Преимущества'), href: '#', current: false },
+    { name: t('Преимущества'), href: 'advantages-section', current: currentSection === "advantages" },
   ]
 
+  const onLinkClick = (href, close) => {
+    //document.getElementById(href)?.scrollIntoView({ behavior: 'smooth' })
+
+    if (href === "aboutMe-section") {
+      setCurrentSection("about")
+    } else if (href === "services-section") {
+      setCurrentSection("services")
+    } else if (href === "aboutMe-section") {
+      setCurrentSection("advantages-section")
+    }
+
+    const yOffset = -30;
+    const element = document.getElementById(href);
+    const y = element?.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+    window.scrollTo({ top: y, behavior: 'smooth' });
+
+    close()
+  }
   return (
     <>
-      
+
       <Disclosure as="nav" className="bg-white border-b-2 border-grey">
-        {({ open }) => (
+        {({ open, setOpen }) => (
           <>
             <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
               <div className="relative flex items-center justify-between h-16">
@@ -49,23 +68,24 @@ export default function Navbar({ lang, setLang, t }) {
                   <div className="hidden lg:block sm:ml-6">
                     <div className="flex space-x-4">
                       {navigation.map((item) => (
-                        <a
+                        <span
                           key={item.name}
-                          href={item.href}
+                          // href={item.href}
+                          onClick={() => onLinkClick(item.href)}
                           className={classNames(
                             item.current ? 'bg-gray-900 text-white' : 'text-gray-900 hover:bg-gray-700 hover:text-white',
-                            'px-3 py-2 rounded-md text-md font-bold'
+                            'px-3 py-2 rounded-md text-md font-bold cursor-pointer'
                           )}
                           aria-current={item.current ? 'page' : undefined}
                         >
                           {item.name}
-                        </a>
+                        </span>
                       ))}
                     </div>
                   </div>
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                  <Switch lang={lang} setLang={setLang}/>
+                  <Switch lang={lang} setLang={setLang} />
                   <button className="bg-gray-100 p-1 rounded-full text-gray-400 ring-gray-400 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                     <span className="sr-only">{t("Посмотреть уведомления")}</span>
                     <BellIcon className="h-7 w-7" aria-hidden="true" />
@@ -133,22 +153,26 @@ export default function Navbar({ lang, setLang, t }) {
             <Disclosure.Panel className={classNames(
               open ? "mobileMenu-opened" : "mobileMenu-closed",
               "lg:hidden mobileMenu bg-white w-full"
-              )}>
-              <div className="px-2 pt-2 pb-3 space-y-1">
-                {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className={classNames(
-                      item.current ? 'bg-gray-900 text-white' : 'text-gray-900 hover:bg-gray-700 hover:text-white',
-                      'block px-3 py-2 rounded-md text-base font-medium'
-                    )}
-                    aria-current={item.current ? 'page' : undefined}
-                  >
-                    {item.name}
-                  </a>
-                ))}
-              </div>
+            )}>
+              {({ close }) => (
+                <div className="px-2 pt-2 pb-3 space-y-1">
+                  {navigation.map((item) => (
+                    <span
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => onLinkClick(item.href, close)}
+                      className={classNames(
+                        item.current ? 'bg-gray-900 text-white' : 'text-gray-900 hover:bg-gray-700 hover:text-white',
+                        'block px-3 py-2 rounded-md text-base font-medium cursor-pointer'
+                      )}
+                      aria-current={item.current ? 'page' : undefined}
+                    >
+                      {item.name}
+                    </span>
+                  ))}
+                </div>
+              )}
+
             </Disclosure.Panel>
           </>
         )}

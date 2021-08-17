@@ -15,8 +15,8 @@ export default {
     'Ваш профиль': "Your profile",
     "Настройки": "Settings",
     "Выйти": "Sign Out",
-    "Репетитор по Английскому для начинающих": "English for beginners",
-    "Репетитор по Русскому языку": "Tutor for Russian language",
+    "Обучение Английскому языку для начинающих": "Tutoring English for beginners",
+    "Обучение Русскому языку": "Tutoring Russian language",
     "Помощь с домашними заданиями ученикам начальных классов": "Helping with homework for primary school students",
     "Репетитор по английскому/русскому языку для учеников начальных классов; подготовка к школе и помощь с домашними заданиями": "Tutor in English and Russian for primary school students. Preparation for school and help with homework.",
     "Подготовка к школе": "Preparation for school"

@@ -153,4 +153,8 @@ body::-webkit-scrollbar-thumb{
     margin-top: 30px;
 }
 
+body{
+    overflow-x: hidden;
+}
+
 

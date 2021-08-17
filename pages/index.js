@@ -1,4 +1,4 @@
-import {useState} from "react"
+import { useState, useEffect } from "react"
 import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
@@ -33,7 +33,7 @@ function Bio({ t, lang }) {
 
 function About({ t }) {
   return (
-    <div className="col-span-3 border-b-2 border-gray-200 bg-white z-50">
+    <div className="col-span-3 border-b-2 border-gray-200 bg-white z-50" id="aboutMe-section">
       <div className="max-w-7xl mx-auto mt-10 mb-14 sm:px-8 xl:px-0">
         <h1 className="text-center font-bold text-4xl text-gray-800 ">{t("Обо мне")}</h1>
         <p className="textAbout sm:text-3xl xl:text-4xl">Закончила школу с красным аттестатом. Сдала английский и русский языки более, чем на 90%. Являюсь неоднократным победителем различных конкурсов по английскому языку, русскому языку, литературе, конкурсов чтецов. Целеустремленная и находчивая- я найду подход к Вашему ребёнку и сумею заинтересовать его обучением.</p>
@@ -44,9 +44,9 @@ function About({ t }) {
 
 function AdvantagesSection({ t }) {
   return (
-    <div className="col-span-3 py-20 border-t-2 border-gray-200 relative adv-wrapper sm:px-4 sm:py-12 bg-white z-10">
+    <div className="col-span-3 py-20 border-t-2 border-gray-200 relative adv-wrapper sm:px-4 sm:py-12 bg-white z-10" id="advantages-section">
       <div className="h-full absolute top-0 w-screen left-0">
-        <Image src="/images/bg-en.svg" layout="fill" objectFit="cover" className="bg-en" objectPosition="center bottom"/>
+        <Image src="/images/bg-en.svg" layout="fill" objectFit="cover" className="bg-en" objectPosition="center bottom" />
       </div>
       <div className="max-w-7xl mx-auto">
         <h1 className="font-bold text-4xl text-gray-800 font-sans sm:text-3xl sm:text-center md:text-4xl">{t('Мои преимущества')}</h1>
@@ -72,15 +72,16 @@ function AdvantagesSection({ t }) {
   )
 }
 
-function ServicesGrid({ gigs, setIsOpen }) {
+function ServicesGrid({ t, gigs, setIsOpen }) {
   return (
-    <div className="col-span-3 py-20 relative cards-wrapper z-10 bg-white">
+    <div className="col-span-3 pb-20 relative cards-wrapper z-10 bg-white" id="services-section">
       <div className="w-full h-full absolute top-0">
         <Image src="/images/bg.jpg" layout="fill" objectFit="cover" className="opacity-20" />
       </div>
-      <div className="grid max-w-7xl mx-auto xl:gap-12 md:gap-10 sm:gap-10 z-10 relative sm:grid-cols-1 sm:px-8 xl:grid-cols-2 2xl:grid-cols-3">
+      <h1 className="text-center text-gray-800 text-4xl font-bold z-50 relative mt-16">{t('Услуги')}</h1>
+      <div className="grid max-w-7xl mx-auto xl:gap-12 md:gap-10 sm:gap-10 z-10 relative sm:grid-cols-1 sm:px-8 xl:grid-cols-2 2xl:grid-cols-3 mt-16">
         {gigs.map((gig, index) => {
-          return <Card text={gig} key={index} setIsOpen={setIsOpen}/>
+          return <Card text={gig} key={index} setIsOpen={setIsOpen} />
         })}
       </div>
     </div>
@@ -122,12 +123,12 @@ function BioSection({ t, lang }) {
   )
 }
 
-function NavHeader({ lang, setLang, t}) {
+function NavHeader({ lang, setLang, t, setCurrentSection, currentSection }) {
   return (
     <>
       <div className="bg-red-500 w-full h-3 col-span-3" />
       <div className="col-span-3 sticky top-0 nav-wrapper">
-        <Navbar lang={lang} setLang={setLang} t={t} />
+        <Navbar lang={lang} setLang={setLang} t={t} currentSection={currentSection} setCurrentSection={setCurrentSection}/>
       </div>
     </>
   )
@@ -136,10 +137,47 @@ function NavHeader({ lang, setLang, t}) {
 export default function Home(props) {
 
   let [isOpen, setIsOpen] = useState(false)
+  const [currentSection, setCurrentSection] = useState("")
+
+  console.log(currentSection)
+
+  useEffect(() => {
+    scrollListener()
+  }, [])
+
+  function scrollListener() {
+    const aboutSection = document.getElementById("aboutMe-section")
+    const servicesSection = document.getElementById("services-section")
+    const advantagesSection = document.getElementById("advantages-section")
+
+    const offsetY = 70
+    const sensitivity = 50
+    window.onscroll = function () {
+
+      //TOP
+      if (aboutSection?.getBoundingClientRect().top <= offsetY && aboutSection?.getBoundingClientRect().top > offsetY - sensitivity) {
+        setCurrentSection("about")
+      }
+
+      //BOTTOM
+      if (servicesSection?.getBoundingClientRect().top <= offsetY && servicesSection?.getBoundingClientRect().top > offsetY - sensitivity) {
+        setCurrentSection("services")
+      }
+
+      if(window.scrollY===0){
+        setCurrentSection("")
+      }
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        // you're at the bottom of the page
+        setCurrentSection("advantages")
+      }
+
+    }
+  }
 
   const gigs = [
-    t("Репетитор по Английскому для начинающих"),
-    t("Репетитор по Русскому языку"),
+    t("Обучение Английскому языку для начинающих"),
+    t("Обучение Русскому языку"),
     t("Помощь с домашними заданиями ученикам начальных классов"),
     t("Подготовка к школе")
   ]
@@ -159,16 +197,16 @@ export default function Home(props) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <MyModal isOpen={isOpen} setIsOpen={setIsOpen}/>
+      <MyModal isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className="grid grid-cols-3 w-full">
 
-        <NavHeader t={t} lang={props.lang} setLang={props.setLang}/>
+        <NavHeader t={t} lang={props.lang} setLang={props.setLang} currentSection={currentSection} setCurrentSection={setCurrentSection}/>
 
         <BioSection t={t} lang={props.lang} />
 
         <About t={t} />
 
-        <ServicesGrid gigs={gigs} setIsOpen={setIsOpen}/>
+        <ServicesGrid gigs={gigs} setIsOpen={setIsOpen} t={t} />
 
         <AdvantagesSection t={t} />
 
