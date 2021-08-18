@@ -28,12 +28,12 @@ function RegisterForm({ t, setLoginMode, closeModal }) {
     }
 
     return (
-        <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-            <div class="bg-white rounded text-black w-full">
-                <h1 class="mb-8 text-3xl text-center">Sign up</h1>
+        <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+            <div className="bg-white rounded text-black w-full">
+                <h1 className="mb-8 text-3xl text-center">Sign up</h1>
                 <input
                     type="text"
-                    class="block border border-grey-light w-full p-3 rounded mb-4"
+                    className="block border border-grey-light w-full p-3 rounded mb-4"
                     name="fullname"
                     placeholder="First Name"
                     value={name}
@@ -42,7 +42,7 @@ function RegisterForm({ t, setLoginMode, closeModal }) {
 
                 <input
                     type="text"
-                    class="block border border-grey-light w-full p-3 rounded mb-4"
+                    className="block border border-grey-light w-full p-3 rounded mb-4"
                     name="fullname"
                     placeholder="Last Name"
                     value={surname}
@@ -51,7 +51,7 @@ function RegisterForm({ t, setLoginMode, closeModal }) {
 
                 <input
                     type="text"
-                    class="block border border-grey-light w-full p-3 rounded mb-4"
+                    className="block border border-grey-light w-full p-3 rounded mb-4"
                     name="email"
                     placeholder="Email"
                     value={email}
@@ -60,7 +60,7 @@ function RegisterForm({ t, setLoginMode, closeModal }) {
 
                 <input
                     type="password"
-                    class="block border border-grey-light w-full p-3 rounded mb-4"
+                    className="block border border-grey-light w-full p-3 rounded mb-4"
                     name="password"
                     placeholder="Password"
                     value={password}
@@ -69,7 +69,7 @@ function RegisterForm({ t, setLoginMode, closeModal }) {
 
                 <input
                     type="password"
-                    class="block border border-grey-light w-full p-3 rounded mb-4"
+                    className="block border border-grey-light w-full p-3 rounded mb-4"
                     name="confirm_password"
                     placeholder="Confirm Password"
                     value={passwordConfirm}
@@ -78,15 +78,15 @@ function RegisterForm({ t, setLoginMode, closeModal }) {
 
                 <button
                     type="submit"
-                    class="w-full text-center py-3 rounded text-white hover:bg-green-dark focus:outline-none my-1 bg-green-400"
+                    className="w-full text-center py-3 rounded text-white hover:bg-green-dark focus:outline-none my-1 bg-green-400"
                     onClick={onRegister}
                 >Create Account</button>
 
             </div>
 
-            <div class="text-grey-dark mt-6">
+            <div className="text-grey-dark mt-6">
                 Already have an account?
-                <span class="no-underline border-b border-blue text-blue cursor-pointer" onClick={setLoginMode}>
+                <span className="no-underline border-b border-blue text-blue cursor-pointer" onClick={setLoginMode}>
                     Log in
                 </span>.
             </div>
@@ -110,13 +110,13 @@ function LoginForm({ t, setRegisterMode, closeModal }) {
     }
 
     return (
-        <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-            <div class="bg-white rounded text-black w-full">
-                <h1 class="mb-8 text-3xl text-center">Login</h1>
+        <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+            <div className="bg-white rounded text-black w-full">
+                <h1 className="mb-8 text-3xl text-center">Login</h1>
 
                 <input
                     type="text"
-                    class="block border border-grey-light w-full p-3 rounded mb-4"
+                    className="block border border-grey-light w-full p-3 rounded mb-4"
                     name="email"
                     placeholder="Email"
                     value={email}
@@ -125,7 +125,7 @@ function LoginForm({ t, setRegisterMode, closeModal }) {
 
                 <input
                     type="password"
-                    class="block border border-grey-light w-full p-3 rounded mb-4"
+                    className="block border border-grey-light w-full p-3 rounded mb-4"
                     name="password"
                     placeholder="Password"
                     value={password}
@@ -134,15 +134,15 @@ function LoginForm({ t, setRegisterMode, closeModal }) {
 
                 <button
                     type="submit"
-                    class="w-full text-center py-3 rounded text-white hover:bg-green-dark focus:outline-none my-1 bg-green-400"
+                    className="w-full text-center py-3 rounded text-white hover:bg-green-dark focus:outline-none my-1 bg-green-400"
                     onClick={onLogin}
                 >Login</button>
 
             </div>
 
-            <div class="text-grey-dark mt-6">
-                Don't have an account yet?
-                <span class="no-underline border-b border-blue text-blue cursor-pointer" onClick={setRegisterMode}>
+            <div className="text-grey-dark mt-6">
+                {"Don't have an account yet?"}
+                <span className="no-underline border-b border-blue text-blue cursor-pointer" onClick={setRegisterMode}>
                     Register
                 </span>.
             </div>
