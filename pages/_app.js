@@ -1,5 +1,7 @@
 import '../styles/index.css'
 import React, {useState, useEffect} from "react"
+import { useAuthState } from 'react-firebase-hooks/auth';
+import firebase from "../firebase/firebase"
 
 function useLocale(){
   const initValue = typeof window !== "undefined" ? localStorage.getItem("lang") ? localStorage.getItem("lang") : window.navigator.language : "ru-RU"
@@ -20,6 +22,10 @@ function useLocale(){
 
 function MyApp({ Component, pageProps }) {
   const [lang, setLang] = useLocale()
+  const [user, loading] = useAuthState(firebase.auth)
+
+  console.log(user)
+
   return <Component {...pageProps} lang={lang} setLang={setLang}/>
 }
 

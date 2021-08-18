@@ -142,6 +142,11 @@ body::-webkit-scrollbar-thumb{
     background: -webkit-linear-gradient(90deg, rgb(239, 68, 68), orange);
 }
 
+.btnCard:hover{
+    background: -webkit-linear-gradient(90deg, rgb(182, 53, 53), rgb(212, 138, 0));
+    
+}
+
 .bg-en{
     filter: grayscale(100%) opacity(0.05);
 }

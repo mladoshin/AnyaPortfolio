@@ -10,7 +10,8 @@ module.exports = {
       },
       height: {
         "400px": "400px",
-        "300px": "300px"
+        "300px": "300px",
+        "100": "32rem"
       }
     },
     screens: {

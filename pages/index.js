@@ -7,6 +7,8 @@ import Image from "next/image"
 import Card from '../components/card'
 import translations from "../translations/translations"
 import MyModal from '../components/modal'
+import firebase from "../firebase/firebase"
+import AuthModal from "../components/authModal"
 
 function Bio({ t, lang }) {
   const langClass = lang === "en" ? " phrase-en" : " phrase-ru"
@@ -123,12 +125,12 @@ function BioSection({ t, lang }) {
   )
 }
 
-function NavHeader({ lang, setLang, t, setCurrentSection, currentSection }) {
+function NavHeader({ lang, setLang, t, setCurrentSection, currentSection, setIsRegisterOpen }) {
   return (
     <>
       <div className="bg-red-500 w-full h-3 col-span-3" />
       <div className="col-span-3 sticky top-0 nav-wrapper">
-        <Navbar lang={lang} setLang={setLang} t={t} currentSection={currentSection} setCurrentSection={setCurrentSection}/>
+        <Navbar lang={lang} setLang={setLang} t={t} currentSection={currentSection} setCurrentSection={setCurrentSection} setIsRegisterOpen={setIsRegisterOpen}/>
       </div>
     </>
   )
@@ -136,10 +138,10 @@ function NavHeader({ lang, setLang, t, setCurrentSection, currentSection }) {
 
 export default function Home(props) {
 
-  let [isOpen, setIsOpen] = useState(false)
+  let [isServiceOpen, setIsServiceOpen] = useState(false)
+  let [isRegisterOpen, setIsRegisterOpen] = useState(false)
   const [currentSection, setCurrentSection] = useState("")
-
-  console.log(currentSection)
+  const services = props.services
 
   useEffect(() => {
     scrollListener()
@@ -175,12 +177,16 @@ export default function Home(props) {
     }
   }
 
-  const gigs = [
-    t("Обучение Английскому языку для начинающих"),
-    t("Обучение Русскому языку"),
-    t("Помощь с домашними заданиями ученикам начальных классов"),
-    t("Подготовка к школе")
-  ]
+  // const gigs = [
+  //   t("Обучение Английскому языку для начинающих"),
+  //   t("Обучение Русскому языку"),
+  //   t("Помощь с домашними заданиями ученикам начальных классов"),
+  //   t("Подготовка к школе")
+  // ]
+
+  const gigs = services.map(service => {
+    return t(service.title)
+  })
 
   console.log(props.lang)
 
@@ -197,16 +203,28 @@ export default function Home(props) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <MyModal isOpen={isOpen} setIsOpen={setIsOpen} />
+
+      {/* Modal for each service */}
+      <MyModal isOpen={isServiceOpen} setIsOpen={setIsServiceOpen}>
+        <div>
+          <h1>{t("Методика")}</h1>
+          <button>Hello</button>
+        </div>
+        
+      </MyModal>
+
+      {/* Register Modal */}
+      <AuthModal isOpen={isRegisterOpen} setIsOpen={setIsRegisterOpen} authMode="login "/>
+
       <div className="grid grid-cols-3 w-full">
 
-        <NavHeader t={t} lang={props.lang} setLang={props.setLang} currentSection={currentSection} setCurrentSection={setCurrentSection}/>
+        <NavHeader t={t} lang={props.lang} setLang={props.setLang} currentSection={currentSection} setCurrentSection={setCurrentSection} setIsRegisterOpen={setIsRegisterOpen}/>
 
         <BioSection t={t} lang={props.lang} />
 
         <About t={t} />
 
-        <ServicesGrid gigs={gigs} setIsOpen={setIsOpen} t={t} />
+        <ServicesGrid gigs={gigs} setIsOpen={setIsServiceOpen} t={t} />
 
         <AdvantagesSection t={t} />
 
@@ -216,4 +234,23 @@ export default function Home(props) {
 
     </>
   )
+}
+
+export async function getStaticProps() {
+  // Call an external API endpoint to get posts
+  let services = []
+  const querySnapshot = await firebase.fireDB.collection("services").orderBy("order", "asc").get()
+
+  querySnapshot.forEach(doc => {
+    services.push({...doc.data(), id: doc.id})
+  })
+
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    props: {
+      services: services
+    },
+  }
+
 }
