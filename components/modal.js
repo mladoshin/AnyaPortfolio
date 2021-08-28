@@ -18,16 +18,12 @@ export default function MyModal({ isOpen, setIsOpen, children, title, mode }) {
     setIsOpen(false)
   }
 
-  function openModal() {
-    setIsOpen(true)
-  }
-
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog
         as="div"
         className="fixed inset-0 z-10 overflow-y-auto"
-        onClose={closeModal}
+        onClose={()=>closeModal()}
       >
         <div className="min-h-screen px-4 text-center">
           <Transition.Child

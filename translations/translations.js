@@ -20,6 +20,12 @@ export default {
     "Помощь с домашними заданиями ученикам начальных классов": "Helping with homework for primary school students",
     "Репетитор по английскому/русскому языку для учеников начальных классов; подготовка к школе и помощь с домашними заданиями": "Tutor in English and Russian for primary school students. Preparation for school and help with homework.",
     "Подготовка к школе": "Preparation for school",
-    "Войти": "Login"
-
+    "Войти": "Login",
+    "Редактирование услуги": "Edit the gig",
+    "Сохранить изменения": "Save changes",
+    "Добавить услугу": "Add a gig",
+    "Добавление новой услуги": "Adding a new gig",
+    "Название на русском": "Russian title",
+    "Название на английском": "English title",
+    "Порядковый номер": "Order"
 }

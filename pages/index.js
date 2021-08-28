@@ -5,10 +5,14 @@ import utilStyles from '../styles/utils.module.css'
 import Navbar from "../components/navbar"
 import Image from "next/image"
 import Card from '../components/card'
-import translations from "../translations/translations"
+import translationsStatic from "../translations/translations"
 import MyModal from '../components/modal'
 import firebase from "../firebase/firebase"
 import AuthModal from "../components/authModal"
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useCollection } from 'react-firebase-hooks/firestore';
+import CardAddBtn from "../components/cardAddBtn"
+import NewServiceModal from "../components/newServiceModal"
 
 function Bio({ t, lang }) {
   const langClass = lang === "en" ? " phrase-en" : " phrase-ru"
@@ -74,7 +78,37 @@ function AdvantagesSection({ t }) {
   )
 }
 
-function ServicesGrid({ t, gigs, setIsOpen }) {
+function ServicesGrid({ t, services, setIsOpen, admin, setIsAddModalOpen }) {
+  const [servicesUTD, setServicesUTD] = useState([])
+
+  useEffect(()=>{
+    if(admin){
+      return firebase.adminServicesListener(setServicesUTD)
+    }
+  }, [admin])
+
+  function AdminList() {
+    console.log(servicesUTD)
+    return (
+      <>
+        {servicesUTD.map((gig, index) => {
+          return <Card gig={gig} key={index} setIsOpen={setIsOpen} admin={admin} open={() => setIsAddModalOpen({ mode: "edit", id: gig.id })} t={t} />
+        })}
+      </>
+    )
+  }
+
+  function List() {
+    return (
+      <>
+        {services.map((gig, index) => {
+          return <Card gig={gig} key={index} setIsOpen={setIsOpen} admin={admin} open={() => setIsAddModalOpen({ mode: "edit", id: gig.id })} t={t} />
+        })}
+      </>
+    )
+
+  }
+
   return (
     <div className="col-span-3 pb-20 relative cards-wrapper z-10 bg-white" id="services-section">
       <div className="w-full h-full absolute top-0">
@@ -82,9 +116,11 @@ function ServicesGrid({ t, gigs, setIsOpen }) {
       </div>
       <h1 className="text-center text-gray-800 text-4xl font-bold z-50 relative mt-16">{t('Услуги')}</h1>
       <div className="grid max-w-7xl mx-auto xl:gap-12 md:gap-10 sm:gap-10 z-10 relative sm:grid-cols-1 sm:px-8 xl:grid-cols-2 2xl:grid-cols-3 mt-16">
-        {gigs.map((gig, index) => {
-          return <Card text={gig} key={index} setIsOpen={setIsOpen} />
-        })}
+        {/* {services.map((gig, index) => {
+          return <Card gig={gig} key={index} setIsOpen={setIsOpen} admin={admin} open={() => setIsAddModalOpen({ mode: "edit", id: gig.id })} t={t} />
+        })} */}
+        {admin ? <AdminList/> : <List/>}
+        {admin ? <CardAddBtn open={() => setIsAddModalOpen({ mode: "create" })} /> : null}
       </div>
     </div>
   )
@@ -125,12 +161,12 @@ function BioSection({ t, lang }) {
   )
 }
 
-function NavHeader({ lang, setLang, t, setCurrentSection, currentSection, setIsRegisterOpen }) {
+function NavHeader({ lang, setLang, t, setCurrentSection, currentSection, setIsRegisterOpen, admin }) {
   return (
     <>
       <div className="bg-red-500 w-full h-3 col-span-3" />
       <div className="col-span-3 sticky top-0 nav-wrapper">
-        <Navbar lang={lang} setLang={setLang} t={t} currentSection={currentSection} setCurrentSection={setCurrentSection} setIsRegisterOpen={setIsRegisterOpen}/>
+        <Navbar lang={lang} admin={admin} setLang={setLang} t={t} currentSection={currentSection} setCurrentSection={setCurrentSection} setIsRegisterOpen={setIsRegisterOpen} />
       </div>
     </>
   )
@@ -140,12 +176,17 @@ export default function Home(props) {
 
   let [isServiceOpen, setIsServiceOpen] = useState(false)
   let [isRegisterOpen, setIsRegisterOpen] = useState(false)
+  let [isAddModalOpen, setIsAddModalOpen] = useState(false)
+  const [translations, setTranslations] = useState({ ...translationsStatic })
   const [currentSection, setCurrentSection] = useState("")
   const services = props.services
+  const admin = props.admin
 
   useEffect(() => {
     scrollListener()
+    firebase.getTranslations(setTranslations, translationsStatic)
   }, [])
+
 
   function scrollListener() {
     const aboutSection = document.getElementById("aboutMe-section")
@@ -166,7 +207,7 @@ export default function Home(props) {
         setCurrentSection("services")
       }
 
-      if(window.scrollY===0){
+      if (window.scrollY === 0) {
         setCurrentSection("")
       }
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
@@ -177,22 +218,11 @@ export default function Home(props) {
     }
   }
 
-  // const gigs = [
-  //   t("Обучение Английскому языку для начинающих"),
-  //   t("Обучение Русскому языку"),
-  //   t("Помощь с домашними заданиями ученикам начальных классов"),
-  //   t("Подготовка к школе")
-  // ]
-
-  const gigs = services.map(service => {
-    return t(service.title)
-  })
-
   console.log(props.lang)
 
-  function t(text) {
+  function t(text, toEN) {
 
-    if (props.lang === "en") {
+    if (props.lang === "en" || toEN) {
       return translations[text]
     }
     return text
@@ -210,21 +240,26 @@ export default function Home(props) {
           <h1>{t("Методика")}</h1>
           <button>Hello</button>
         </div>
-        
+
+      </MyModal>
+
+      {/* admin modal for adding new services */}
+      <MyModal isOpen={isAddModalOpen?.mode !== undefined} setIsOpen={setIsAddModalOpen}>
+        <NewServiceModal t={t} mode={isAddModalOpen?.mode} id={isAddModalOpen?.id} close={() => setIsAddModalOpen(false)} />
       </MyModal>
 
       {/* Register Modal */}
-      <AuthModal isOpen={isRegisterOpen} setIsOpen={setIsRegisterOpen} authMode="login "/>
+      <AuthModal isOpen={isRegisterOpen} setIsOpen={setIsRegisterOpen} authMode="login " />
 
       <div className="grid grid-cols-3 w-full">
 
-        <NavHeader t={t} lang={props.lang} setLang={props.setLang} currentSection={currentSection} setCurrentSection={setCurrentSection} setIsRegisterOpen={setIsRegisterOpen}/>
+        <NavHeader t={t} lang={props.lang} setLang={props.setLang} currentSection={currentSection} setCurrentSection={setCurrentSection} setIsRegisterOpen={setIsRegisterOpen} admin={admin}/>
 
         <BioSection t={t} lang={props.lang} />
 
         <About t={t} />
 
-        <ServicesGrid gigs={gigs} setIsOpen={setIsServiceOpen} t={t} />
+        <ServicesGrid services={services} setIsOpen={setIsServiceOpen} t={t} admin={admin} setIsAddModalOpen={setIsAddModalOpen} />
 
         <AdvantagesSection t={t} />
 
@@ -242,7 +277,7 @@ export async function getStaticProps() {
   const querySnapshot = await firebase.fireDB.collection("services").orderBy("order", "asc").get()
 
   querySnapshot.forEach(doc => {
-    services.push({...doc.data(), id: doc.id})
+    services.push({ ...doc.data(), id: doc.id })
   })
 
   // By returning { props: { posts } }, the Blog component
