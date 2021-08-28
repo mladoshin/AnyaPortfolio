@@ -4,6 +4,7 @@ import 'firebase/storage'
 import 'firebase/database'
 import "firebase/functions"
 require("firebase/firestore");
+import { updatePassword } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBIfs3fos21oMJxS01wyzW52XIX96sxSPE",
@@ -116,6 +117,13 @@ class Firebase {
         })
     }
 
+    updateAdminPassword(newPassword){
+        this.auth.currentUser.updatePassword(newPassword).then(()=>{
+            alert("Success!")
+        }).catch(err => {
+            alert(err?.message)
+        })
+    }
 }
 
 export default new Firebase();

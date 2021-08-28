@@ -27,5 +27,8 @@ export default {
     "Добавление новой услуги": "Adding a new gig",
     "Название на русском": "Russian title",
     "Название на английском": "English title",
-    "Порядковый номер": "Order"
+    "Порядковый номер": "Order",
+    "Админ панель": "Admin Panel",
+    "Закончила школу с красным аттестатом. Сдала английский и русский языки более, чем на 90%. Являюсь неоднократным победителем различных конкурсов по английскому языку, русскому языку, литературе, конкурсов чтецов. Целеустремленная и находчивая- я найду подход к Вашему ребёнку и сумею заинтересовать его обучением.": "I graduated from school with a red certificate. I passed English and Russian languages by more than 90%. I am a multiple winner of various competitions in English, Russian language, literature, reading competitions. Purposeful and resourceful - I will find an approach to your child and will be able to interest him in learning.",
+    "Безопасность": "Security"
 }

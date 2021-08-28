@@ -22,7 +22,7 @@ export default function MyModal({ isOpen, setIsOpen, children, title, mode }) {
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog
         as="div"
-        className="fixed inset-0 z-10 overflow-y-auto"
+        className="fixed inset-0 overflow-y-auto z-50"
         onClose={()=>closeModal()}
       >
         <div className="min-h-screen px-4 text-center">
@@ -57,7 +57,7 @@ export default function MyModal({ isOpen, setIsOpen, children, title, mode }) {
             <div id="modalRef" className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl h-auto">
               <Dialog.Title
                 as="h3"
-                className="text-lg font-medium leading-6 text-gray-900"
+                className="text-xl font-medium leading-6 text-gray-900 text-center"
               >
                 {title}
               </Dialog.Title>

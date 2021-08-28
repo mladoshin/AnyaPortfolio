@@ -13,6 +13,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import CardAddBtn from "../components/cardAddBtn"
 import NewServiceModal from "../components/newServiceModal"
+import SettingsModal from "../components/settingsModal"
 
 function Bio({ t, lang }) {
   const langClass = lang === "en" ? " phrase-en" : " phrase-ru"
@@ -42,7 +43,7 @@ function About({ t }) {
     <div className="col-span-3 border-b-2 border-gray-200 bg-white z-50" id="aboutMe-section">
       <div className="max-w-7xl mx-auto mt-10 mb-14 sm:px-8 xl:px-0">
         <h1 className="text-center font-bold text-4xl text-gray-800 ">{t("Обо мне")}</h1>
-        <p className="textAbout sm:text-3xl xl:text-4xl">Закончила школу с красным аттестатом. Сдала английский и русский языки более, чем на 90%. Являюсь неоднократным победителем различных конкурсов по английскому языку, русскому языку, литературе, конкурсов чтецов. Целеустремленная и находчивая- я найду подход к Вашему ребёнку и сумею заинтересовать его обучением.</p>
+        <p className="textAbout sm:text-3xl xl:text-4xl">{t('Закончила школу с красным аттестатом. Сдала английский и русский языки более, чем на 90%. Являюсь неоднократным победителем различных конкурсов по английскому языку, русскому языку, литературе, конкурсов чтецов. Целеустремленная и находчивая- я найду подход к Вашему ребёнку и сумею заинтересовать его обучением.')}</p>
       </div>
     </div>
   )
@@ -81,8 +82,8 @@ function AdvantagesSection({ t }) {
 function ServicesGrid({ t, services, setIsOpen, admin, setIsAddModalOpen }) {
   const [servicesUTD, setServicesUTD] = useState([])
 
-  useEffect(()=>{
-    if(admin){
+  useEffect(() => {
+    if (admin) {
       return firebase.adminServicesListener(setServicesUTD)
     }
   }, [admin])
@@ -119,7 +120,7 @@ function ServicesGrid({ t, services, setIsOpen, admin, setIsAddModalOpen }) {
         {/* {services.map((gig, index) => {
           return <Card gig={gig} key={index} setIsOpen={setIsOpen} admin={admin} open={() => setIsAddModalOpen({ mode: "edit", id: gig.id })} t={t} />
         })} */}
-        {admin ? <AdminList/> : <List/>}
+        {admin ? <AdminList /> : <List />}
         {admin ? <CardAddBtn open={() => setIsAddModalOpen({ mode: "create" })} /> : null}
       </div>
     </div>
@@ -161,12 +162,21 @@ function BioSection({ t, lang }) {
   )
 }
 
-function NavHeader({ lang, setLang, t, setCurrentSection, currentSection, setIsRegisterOpen, admin }) {
+function NavHeader({ lang, setLang, t, setCurrentSection, currentSection, setIsRegisterOpen, admin, openSettingsModal }) {
   return (
     <>
       <div className="bg-red-500 w-full h-3 col-span-3" />
       <div className="col-span-3 sticky top-0 nav-wrapper">
-        <Navbar lang={lang} admin={admin} setLang={setLang} t={t} currentSection={currentSection} setCurrentSection={setCurrentSection} setIsRegisterOpen={setIsRegisterOpen} />
+        <Navbar
+          lang={lang}
+          admin={admin}
+          setLang={setLang}
+          t={t}
+          currentSection={currentSection}
+          setCurrentSection={setCurrentSection}
+          setIsRegisterOpen={setIsRegisterOpen}
+          openSettingsModal={openSettingsModal}
+        />
       </div>
     </>
   )
@@ -177,6 +187,7 @@ export default function Home(props) {
   let [isServiceOpen, setIsServiceOpen] = useState(false)
   let [isRegisterOpen, setIsRegisterOpen] = useState(false)
   let [isAddModalOpen, setIsAddModalOpen] = useState(false)
+  let [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false)
   const [translations, setTranslations] = useState({ ...translationsStatic })
   const [currentSection, setCurrentSection] = useState("")
   const services = props.services
@@ -187,6 +198,9 @@ export default function Home(props) {
     firebase.getTranslations(setTranslations, translationsStatic)
   }, [])
 
+  const openSettingsModal = () => {
+    setIsSettingsModalOpen(true)
+  }
 
   function scrollListener() {
     const aboutSection = document.getElementById("aboutMe-section")
@@ -243,6 +257,9 @@ export default function Home(props) {
 
       </MyModal>
 
+      {/* Settings modal */}
+      <SettingsModal isOpen={isSettingsModalOpen} setIsOpen={setIsSettingsModalOpen} t={t} />
+
       {/* admin modal for adding new services */}
       <MyModal isOpen={isAddModalOpen?.mode !== undefined} setIsOpen={setIsAddModalOpen}>
         <NewServiceModal t={t} mode={isAddModalOpen?.mode} id={isAddModalOpen?.id} close={() => setIsAddModalOpen(false)} />
@@ -253,7 +270,16 @@ export default function Home(props) {
 
       <div className="grid grid-cols-3 w-full">
 
-        <NavHeader t={t} lang={props.lang} setLang={props.setLang} currentSection={currentSection} setCurrentSection={setCurrentSection} setIsRegisterOpen={setIsRegisterOpen} admin={admin}/>
+        <NavHeader
+          t={t}
+          lang={props.lang}
+          setLang={props.setLang}
+          currentSection={currentSection}
+          setCurrentSection={setCurrentSection}
+          setIsRegisterOpen={setIsRegisterOpen}
+          admin={admin}
+          openSettingsModal={openSettingsModal}
+        />
 
         <BioSection t={t} lang={props.lang} />
 
