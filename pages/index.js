@@ -32,7 +32,7 @@ function Bio({ t, lang }) {
         </div>
 
         {/* Call button */}
-        <button className="relative w-72 mx-auto bg-red-500 rounded-md py-1 shadow-xl call-btn text-white"><a href="tel:79154195242">{t('Позвонить')}</a></button>
+        <button className="relative w-72 mx-auto bg-red-500 rounded-md py-1 shadow-xl call-btn text-white"><a href="tel:79154195242" className="block w-full">{t('Позвонить')}</a></button>
 
       </div>
       <div className="col-span-5 order-3 py-12 sm:px-8">
