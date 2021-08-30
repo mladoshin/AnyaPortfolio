@@ -13,7 +13,7 @@ function Card({ gig, setIsOpen, admin, open, t }) {
                 <p className="font-bold text-gray-800 text-center text-2xl card-text sm:text-2xl md:text-3xl">{t(gig?.title)}</p>
             </div>
             <div className="flex flex-row items-center">
-                <button className="bg-red-500 w-40 mx-auto rounded-md focus:ring-2 ring-offset-4 ring-red-500 py-1 text-white font-normal text-lg hover:bg-red-700 transition btnCard" onClick={() => setIsOpen(true)}>Подробнее</button>
+                <button className="bg-red-500 w-40 mx-auto rounded-md focus:ring-2 ring-offset-4 ring-red-500 py-1 text-white font-normal text-lg hover:bg-red-700 transition btnCard" onClick={() => setIsOpen({gigId: gig.id})}>Подробнее</button>
                 {admin && <EditBtn open={open}/>}
             </div>
 

@@ -1783,6 +1783,11 @@ classnames@2.2.6:
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
 
+classnames@^2.2.5:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
+  integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
+
 clean-stack@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/clean-stack/-/clean-stack-2.2.0.tgz#ee8472dbb129e727b31e8a10a427dee9dfe4008b"
@@ -2089,6 +2094,11 @@ cosmiconfig@^7.0.0:
     parse-json "^5.0.0"
     path-type "^4.0.0"
     yaml "^1.10.0"
+
+country-flag-icons@^1.0.2:
+  version "1.4.7"
+  resolved "https://registry.yarnpkg.com/country-flag-icons/-/country-flag-icons-1.4.7.tgz#6f9acb18fae373528ba38834ba80e30084f24e7f"
+  integrity sha512-tsF7fPalAub3f328OcZL6sUxC+g7Ndua+M4xXCm+Q3f/p2XtNmJNrZTopA9iyS82ddYyKZ5ClPZUhifWv6fn2g==
 
 crc-32@^1.2.0:
   version "1.2.0"
@@ -3206,10 +3216,10 @@ firebase-admin@^9.11.0:
     "@google-cloud/firestore" "^4.5.0"
     "@google-cloud/storage" "^5.3.0"
 
-firebase-tools@^9.16.5:
-  version "9.16.5"
-  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-9.16.5.tgz#c6d38bded228fd2a5dfd781a42287c78dab66b86"
-  integrity sha512-dp/cvt+39wv5CO+MzX36snmRnvn5j7Nn73QfKiIvHXAT5Ek/fRJn2pWnaxP+bhd19SuEY1Buf8PcdlMl42hzlw==
+firebase-tools@^9.16.6:
+  version "9.16.6"
+  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-9.16.6.tgz#9b46c62cba7499fd17d4f44003f9bb05529b1dad"
+  integrity sha512-bW4rT+pTE6n8892rXd5ier9H1snXUZIXrL3WKzuVWXSUqDjUbx6SIgXhjp1++GIdkiMGnfDY5EJR4nV/YrTO5A==
   dependencies:
     "@google-cloud/pubsub" "^2.7.0"
     "@types/archiver" "^5.1.0"
@@ -4048,6 +4058,13 @@ ini@~1.3.0:
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.8.tgz#a29da425b48806f34767a4efce397269af28432c"
   integrity sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==
 
+input-format@^0.3.6:
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/input-format/-/input-format-0.3.6.tgz#b9b167dbd16435eb3c0012347964b230ea0024c8"
+  integrity sha512-SbUu43CDVV5GlC8Xi6NYBUoiU+tLpN/IMYyQl0mzSXDiU1w0ql8wpcwjDOFpaCVLySLoreLUimhI82IA5y42Pw==
+  dependencies:
+    prop-types "^15.7.2"
+
 inquirer@~6.3.1:
   version "6.3.1"
   resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-6.3.1.tgz#7a413b5e7950811013a3db491c61d1f3b776e8e7"
@@ -4659,6 +4676,11 @@ levn@~0.3.0:
   dependencies:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
+
+libphonenumber-js@^1.9.22:
+  version "1.9.25"
+  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.9.25.tgz#e54b570f03d36ce059a88ab01ec49b9037ec1c97"
+  integrity sha512-LsSjcmXXGujESsrOsF2rrLdmuABj3OluCzPJKVNslJ2qc7xF5KdKXN8y0OcxHVurqosVf1/r4itrVrKSrlbVHA==
 
 lilconfig@^2.0.3:
   version "2.0.3"
@@ -5417,6 +5439,11 @@ node-releases@^1.1.71, node-releases@^1.1.73:
   version "1.1.74"
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.74.tgz#e5866488080ebaa70a93b91144ccde06f3c3463e"
   integrity sha512-caJBVempXZPepZoZAPCWRTNxYQ+xtG/KAi4ozTA5A+nJ7IU+kLQCbqaUjb5Rwy14M9upBWiQ4NutcmW04LJSRw==
+
+nodemailer@^6.6.3:
+  version "6.6.3"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.6.3.tgz#31fb53dd4d8ae16fc088a65cb9ffa8d928a69b48"
+  integrity sha512-faZFufgTMrphYoDjvyVpbpJcYzwyFnbAMmQtj1lVBYAUSm3SOy2fIdd9+Mr4UxPosBa0JRw9bJoIwQn+nswiew==
 
 nopt@^5.0.0:
   version "5.0.0"
@@ -6300,6 +6327,17 @@ react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+
+react-phone-number-input@^3.1.25:
+  version "3.1.25"
+  resolved "https://registry.yarnpkg.com/react-phone-number-input/-/react-phone-number-input-3.1.25.tgz#5f1237543c951235f1da64e5eaecdebe4b185286"
+  integrity sha512-ZIVXeHKwqHNiAUbqHkkJQRCy2EmKVbL7OMl+cWW3vBX7jhLc9/kGTMjVw9PRem5L8p0clvcwOR+xmbMg4Wkqnw==
+  dependencies:
+    classnames "^2.2.5"
+    country-flag-icons "^1.0.2"
+    input-format "^0.3.6"
+    libphonenumber-js "^1.9.22"
+    prop-types "^15.7.2"
 
 react-refresh@0.8.3:
   version "0.8.3"

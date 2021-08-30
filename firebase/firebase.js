@@ -124,6 +124,46 @@ class Firebase {
             alert(err?.message)
         })
     }
+
+    updateGigInfo(gigId, info){
+        let updates = {info: info}
+        if(info!==""){
+            this.updateGig(updates, gigId)
+        }
+        
+    }
+
+    sendRequest(name, mobileNum, email, question){
+        const request = {
+            name: name, 
+            email: email, 
+            mobileNum: mobileNum,
+            question: question,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        }
+
+        this.doesRequestExist(mobileNum).then(exist => {
+            if(exist){
+                alert("You have already submitted a request")
+            }else{
+                this.fireDB.collection("requests").add(request)
+            }
+        })
+        
+    }
+
+    //checks if the user already sent a request
+    doesRequestExist(mobileNum){
+        return new Promise((resolve, reject) => {
+            this.fireDB.collection("requests").where("mobileNum", "==", mobileNum).get().then(snap => {
+                if (snap.empty){
+                    resolve(false)
+                }else{
+                    resolve(true)
+                }
+            }).catch((err)=>reject(err))
+        })
+    }
 }
 
 export default new Firebase();

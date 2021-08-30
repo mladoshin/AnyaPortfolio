@@ -14,6 +14,8 @@ import { useCollection } from 'react-firebase-hooks/firestore';
 import CardAddBtn from "../components/cardAddBtn"
 import NewServiceModal from "../components/newServiceModal"
 import SettingsModal from "../components/settingsModal"
+import GigInfoModal from "../components/gigInfoModal"
+import RequestForm from "../components/requestForm"
 
 function Bio({ t, lang }) {
   const langClass = lang === "en" ? " phrase-en" : " phrase-ru"
@@ -131,11 +133,13 @@ function Footer({ t }) {
   return (
     <>
       <div className="bg-red-500 w-full h-1" />
-      <footer className="relative w-full bg-white h-16 sm:px-4">
+      <footer className="relative w-full bg-white sm:px-4">
 
         <div className="flex flex-row max-w-7xl mx-auto py-5 sm:flex-col sm:items-center lg:flex-row">
           <div className="w-40 sm:text-center">
-            <h1>{t('Контакты и адрес')}</h1>
+            <h1 className="font-semibold">{t('Контакты и адрес:')}</h1>
+            <p>+7 915 419-52-42</p>
+            <i>м. Первомайская</i>
           </div>
           <div className="flex-1 text-center">
             <h1>Copyright</h1>
@@ -179,6 +183,17 @@ function NavHeader({ lang, setLang, t, setCurrentSection, currentSection, setIsR
         />
       </div>
     </>
+  )
+}
+
+function ContactSection({ t }) {
+  return (
+    <div className="col-span-3 relative z-10 bg-white" id="contacts-section">
+      <div className="flex flex-col items-center justify-center w-full">
+        {/* Form */}
+        <RequestForm t={t}/>
+      </div>
+    </div>
   )
 }
 
@@ -249,13 +264,14 @@ export default function Home(props) {
       </Head>
 
       {/* Modal for each service */}
-      <MyModal isOpen={isServiceOpen} setIsOpen={setIsServiceOpen}>
+      <GigInfoModal isOpen={isServiceOpen} setIsOpen={setIsServiceOpen} t={t} gig={services.filter(s => s.id === isServiceOpen?.gigId)} admin={admin} />
+      {/* <MyModal isOpen={isServiceOpen} setIsOpen={setIsServiceOpen}>
         <div>
           <h1>{t("Методика")}</h1>
           <button>Hello</button>
         </div>
 
-      </MyModal>
+      </MyModal> */}
 
       {/* Settings modal */}
       <SettingsModal isOpen={isSettingsModalOpen} setIsOpen={setIsSettingsModalOpen} t={t} />
@@ -288,6 +304,8 @@ export default function Home(props) {
         <ServicesGrid services={services} setIsOpen={setIsServiceOpen} t={t} admin={admin} setIsAddModalOpen={setIsAddModalOpen} />
 
         <AdvantagesSection t={t} />
+
+        <ContactSection t={t} />
 
       </div>
 

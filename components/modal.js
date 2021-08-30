@@ -2,7 +2,7 @@ import {useRef, useEffect} from "react"
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 
-export default function MyModal({ isOpen, setIsOpen, children, title, mode }) {
+export default function MyModal({ isOpen, setIsOpen, children, title, mode, maxWidth }) {
 
   //smooth resize animation of a modal
   useEffect(()=>{
@@ -54,7 +54,7 @@ export default function MyModal({ isOpen, setIsOpen, children, title, mode }) {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div id="modalRef" className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl h-auto">
+            <div id="modalRef" className={"inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl h-auto"+" "+maxWidth}>
               <Dialog.Title
                 as="h3"
                 className="text-xl font-medium leading-6 text-gray-900 text-center"
