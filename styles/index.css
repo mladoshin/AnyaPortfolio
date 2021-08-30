@@ -176,5 +176,15 @@ body{
     background: -webkit-linear-gradient(90deg, rgb(182, 53, 53), rgb(212, 138, 0));
 }
 
+.call-btn{
+    background: -webkit-linear-gradient(90deg, rgb(239, 68, 68), rgb(235, 123, 123));
+    font-family: inherit;
+    font-weight: bold;
+}
+
+.call-btn:hover{
+    background: -webkit-linear-gradient(90deg, rgb(182, 53, 53), rgb(235, 108, 108));
+}
+
 
 

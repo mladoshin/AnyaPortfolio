@@ -26,10 +26,13 @@ function Bio({ t, lang }) {
         <h1 className="text-7xl font-bold md:text-center lg:text-6xl nameText">{t('Анна Назолина')}</h1>
         <p className="md:mx-auto md:w-8/12 lg:w-9/12 aboutMe">{t('Репетитор по английскому/русскому языку для учеников начальных классов; подготовка к школе и помощь с домашними заданиями')}</p>
       </div>
-      <div className="lg:col-span-2 sm:order-1 sm:col-span-5">
+      <div className="lg:col-span-2 sm:order-1 sm:col-span-5 flex flex-col">
         <div className="relative w-300px h-300px mx-auto rounded-3xl overflow-hidden ring-4 ring-red-500 ring-offset-4 my-8 shadow-xl">
           <Image src="/images/profile.jpg" layout="fill" objectFit="cover" />
         </div>
+
+        {/* Call button */}
+        <button className="relative w-72 mx-auto bg-red-500 rounded-md py-1 shadow-xl call-btn text-white"><a href="tel:79154195242">{t('Позвонить')}</a></button>
 
       </div>
       <div className="col-span-5 order-3 py-12 sm:px-8">
@@ -139,10 +142,10 @@ function Footer({ t }) {
           <div className="w-40 sm:text-center">
             <h1 className="font-semibold">{t('Контакты и адрес:')}</h1>
             <p>+7 915 419-52-42</p>
-            <i>м. Первомайская</i>
+            <i>{t('м. Первомайская')}</i>
           </div>
           <div className="flex-1 text-center">
-            <h1>Copyright</h1>
+            <h1>Copyright &#169; Maxim Ladoshin 2021</h1>
           </div>
           <div className="w-40"></div>
         </div>

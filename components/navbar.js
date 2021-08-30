@@ -21,13 +21,11 @@ function UserMenu({ t, openSettingsModal }) {
 
       <Menu as="div" className="ml-3 relative">
         <div>
-          <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+          <Menu.Button className="bg-white flex text-sm rounded-full border-2 border-black p-1 hover:border-gray-600">
             <span className="sr-only">{t('Открыть меню пользователя')}</span>
-            <img
-              className="h-8 w-8 rounded-full"
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-              alt=""
-            />
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 hover:text-gray-600" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+            </svg>
           </Menu.Button>
         </div>
         <Transition
@@ -80,7 +78,7 @@ function UserMenu({ t, openSettingsModal }) {
 function AuthButton({ t, clickHandler }) {
   return (
     <div>
-      <button onClick={clickHandler}>{t("Войти")}</button>
+      <button onClick={clickHandler} className="rounded-md border-2 border-gray-300 p-1 hover:bg-gray-100 ml-4">{t("Войти")}</button>
     </div>
   )
 }
@@ -171,7 +169,7 @@ export default function Navbar({ lang, setLang, t, currentSection, setCurrentSec
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                   <Switch lang={lang} setLang={setLang} />
 
-                  {user ? <UserMenu t={t} openSettingsModal={openSettingsModal}/> : <AuthButton clickHandler={() => setIsRegisterOpen(true)} t={t} />}
+                  {user ? <UserMenu t={t} openSettingsModal={openSettingsModal} /> : <AuthButton clickHandler={() => setIsRegisterOpen(true)} t={t} />}
 
 
                 </div>

@@ -38,7 +38,7 @@ function RequestForm({ t }) {
                     type="name"
                     className="block border border-grey-light w-full p-3 rounded mb-4"
                     name="name"
-                    placeholder="Name"
+                    placeholder={t("Имя")}
                     value={name}
                     onChange={e => setName(e.target.value)}
                 />
@@ -55,7 +55,7 @@ function RequestForm({ t }) {
                     type="email"
                     className="block border border-grey-light w-full p-3 rounded mb-4"
                     name="email"
-                    placeholder="Email"
+                    placeholder={t("Почта")}
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                 />
@@ -65,7 +65,7 @@ function RequestForm({ t }) {
                     type="text"
                     className="block border border-grey-light w-full p-3 rounded resize-none mb-4"
                     name="email"
-                    placeholder="Questions"
+                    placeholder={t("Вопросы")}
                     value={question}
                     onChange={e => setQuestion(e.target.value)}
                 />

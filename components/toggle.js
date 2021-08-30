@@ -15,7 +15,7 @@ function Switch({ lang, setLang }) {
     }
 
     return (
-        <button ref={btnRef} className="text-xs bg-white text-gray-700 w-8 h-8 rounded-full font-mono font-semibold" onClick={toggleLocale}>{title}</button>
+        <button ref={btnRef} className="text-sm bg-white text-gray-700 w-8 h-8 rounded-full font-mono font-semibold" onClick={toggleLocale}>{title}</button>
     )
 }
 
