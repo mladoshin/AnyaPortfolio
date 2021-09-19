@@ -320,7 +320,7 @@ export default function Home(props) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   // Call an external API endpoint to get posts
   let services = []
   const querySnapshot = await firebase.fireDB.collection("services").orderBy("order", "asc").get()
