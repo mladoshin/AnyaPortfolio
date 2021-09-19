@@ -211,6 +211,8 @@ export default function Home(props) {
   const services = props.services
   const admin = props.admin
 
+  console.log(services)
+
   useEffect(() => {
     scrollListener()
     firebase.getTranslations(setTranslations, translationsStatic)
