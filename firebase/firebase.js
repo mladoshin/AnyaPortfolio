@@ -7,7 +7,7 @@ require("firebase/firestore");
 import { updatePassword } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBIfs3fos21oMJxS01wyzW52XIX96sxSPE",
+    apiKey: process.env.NEXT_PUBLIC_KEY,
     authDomain: "anyaprofile-602c2.firebaseapp.com",
     projectId: "anyaprofile-602c2",
     databaseURL: "https://anyaprofile-602c2-default-rtdb.europe-west1.firebasedatabase.app",
